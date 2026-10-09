@@ -1,0 +1,9 @@
+video_player:
+  git: https://github.com/mounsokdara/video-player
+  name: "Video Player"
+  description: |
+    Local-only Material 3 Android player. Playback uses libmpv (media_kit). Files stay on the device.
+
+    Features include library scanning, folders, bookmarks, equalizer, themes, accessibility options, picture-in-picture, and more.
+  categories:
+    - Multimedia
