@@ -37,10 +37,13 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Decode secrets
+        env:
+          KEYSTORE_P12: ${{ secrets.KEYSTORE_P12 }}
+          CONFIG_YML: ${{ secrets.CONFIG_YML }}
         run: |
-          echo "${{ secrets.KEYSTORE_P12 }}" | base64 -d > fdroid/keystore.p12
-          echo "${{ secrets.CONFIG_YML }}" | base64 -d > fdroid/config.yml
-          chmod 600 fdroid/config.yml fdroid/keystore.p12
+          umask 077
+          printf '%s' "$KEYSTORE_P12" | base64 -d > fdroid/keystore.p12
+          printf '%s' "$CONFIG_YML" | base64 -d > fdroid/config.yml
 
       - name: Download latest APK from video-player
         run: |
@@ -55,10 +58,17 @@ jobs:
           wget -q -O fdroid/repo/com.mounsokdara.video_player.apk "$DOWNLOAD_URL"
           ls -lh fdroid/repo/
 
+      - name: Verify APK signer matches AllowedAPKSigningKeys
+        run: |
+          want=$(sed -n 's/^AllowedAPKSigningKeys:[[:space:]]*//p' fdroid/metadata/com.mounsokdara.video_player.yml | tr -d "[:space:]'")
+          got=$(apksigner verify --print-certs fdroid/repo/com.mounsokdara.video_player.apk | sed -n 's/.*certificate SHA-256 digest: //p' | head -n1)
+          echo "want=$want"; echo "got =$got"
+          [ -n "$want" ] && [ "$want" = "$got" ] || { echo "::error::APK is not signed by the allowed key"; exit 1; }
+
       - name: Run fdroid update
         run: |
           cd fdroid
-          fdroid update --create-metadata -v
+          fdroid update --delete-unknown -v
           # Keep only the latest few versions if needed
           ls -la repo/
 
@@ -66,10 +76,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add fdroid/
+          git add fdroid/repo fdroid/metadata
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Automated F-Droid repo update"
             git push
           fi
+
+      - name: Remove secrets from runner
+        if: always()
+        run: rm -f fdroid/keystore.p12 fdroid/config.yml

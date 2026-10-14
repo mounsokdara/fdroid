@@ -13,3 +13,7 @@ upload-keystore.*
 .pub-cache/
 *.log
 .DS_Store
+
+# fdroid scratch
+fdroid/tmp/
+fdroid/keystore.*
