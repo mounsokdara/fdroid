@@ -1,0 +1,15 @@
+# Signing keys and secrets - never commit these
+fdroid/keystore.p12
+fdroid/keystore.jks
+fdroid/*.p12
+fdroid/*.jks
+fdroid/config.yml
+*.p12
+*.jks
+key.properties
+upload-keystore.*
+
+# Local / generated
+.pub-cache/
+*.log
+.DS_Store

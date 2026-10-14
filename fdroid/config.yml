@@ -1,0 +1,20 @@
+---
+# F-Droid repository configuration for mounsokdara
+
+repo_url: https://raw.githubusercontent.com/mounsokdara/fdroid/main/fdroid/repo
+repo_name: mounsokdara's F-Droid Repo
+repo_description: Personal F-Droid repository hosted on GitHub
+repo_icon: icon.png
+repo_keyalias: fdroid
+
+# Keep only recent versions
+archive_older: 0
+
+# Signing
+keystore: keystore.p12
+keystorepass: fdroidtemp123
+keypass: fdroidtemp123
+keyalias: fdroid
+
+# Make sure these match
+repo_pubkey: ''
