@@ -16,6 +16,7 @@ Builds:
     versionCode: 121
     commit: 606e36fc0d92b38c40e7c2416baf92939416a829
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-armeabi-v7a.apk
     srclibs:
       - flutter@stable
     prebuild:
@@ -38,6 +39,7 @@ Builds:
     versionCode: 122
     commit: 606e36fc0d92b38c40e7c2416baf92939416a829
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-arm64-v8a.apk
     srclibs:
       - flutter@stable
     prebuild:
@@ -60,6 +62,7 @@ Builds:
     versionCode: 123
     commit: 606e36fc0d92b38c40e7c2416baf92939416a829
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
+    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-x86_64.apk
     srclibs:
       - flutter@stable
     prebuild:
@@ -78,12 +81,14 @@ Builds:
         android-x64 --dart-define=FDROID=true --dart-define=APP_VERSION=$(cut -d+
         -f1 version.txt)
 
+AllowedAPKSigningKeys: fd5c65cc4aba8e32aea3182b5ab8ebc4c0b52e9f0861a8dfca721d02c71b7db6
+
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
 VercodeOperation:
-  - 10 * %c + 1
-  - 10 * %c + 2
-  - 10 * %c + 3
+  - '%c * 10 + 1'
+  - '%c * 10 + 2'
+  - '%c * 10 + 3'
 UpdateCheckData: version.txt|\+(\d+)|.|(.+)\+
 CurrentVersion: 1.0.3
 CurrentVersionCode: 123
