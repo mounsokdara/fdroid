@@ -11,17 +11,18 @@ AutoName: Video Player
 RepoType: git
 Repo: https://github.com/mounsokdara/video-player.git
 
+Binaries: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
+
 Builds:
-  - versionName: 1.0.3
-    versionCode: 121
-    commit: 606e36fc0d92b38c40e7c2416baf92939416a829
+  - versionName: 1.0.4
+    versionCode: 131
+    commit: 88682469b5c58baec922427fffbbbb95b95b8eb8
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-armeabi-v7a.apk
     srclibs:
       - flutter@stable
     prebuild:
       - flutterVersion=$(sed -n -E 's/.*flutter-version:[[:space:]]*"?([0-9.]+).*/\1/p'
-        .github/workflows/build-apk.yml)
+        .github/workflows/build-apk.yml | head -n1)
       - '[[ $flutterVersion ]]'
       - git -C $$flutter$$ checkout -f $flutterVersion
       - export PUB_CACHE=$(pwd)/.pub-cache
@@ -35,16 +36,15 @@ Builds:
         android-arm --dart-define=FDROID=true --dart-define=APP_VERSION=$(cut -d+
         -f1 version.txt)
 
-  - versionName: 1.0.3
-    versionCode: 122
-    commit: 606e36fc0d92b38c40e7c2416baf92939416a829
+  - versionName: 1.0.4
+    versionCode: 132
+    commit: 88682469b5c58baec922427fffbbbb95b95b8eb8
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-arm64-v8a.apk
     srclibs:
       - flutter@stable
     prebuild:
       - flutterVersion=$(sed -n -E 's/.*flutter-version:[[:space:]]*"?([0-9.]+).*/\1/p'
-        .github/workflows/build-apk.yml)
+        .github/workflows/build-apk.yml | head -n1)
       - '[[ $flutterVersion ]]'
       - git -C $$flutter$$ checkout -f $flutterVersion
       - export PUB_CACHE=$(pwd)/.pub-cache
@@ -58,16 +58,15 @@ Builds:
         android-arm64 --dart-define=FDROID=true --dart-define=APP_VERSION=$(cut -d+
         -f1 version.txt)
 
-  - versionName: 1.0.3
-    versionCode: 123
-    commit: 606e36fc0d92b38c40e7c2416baf92939416a829
+  - versionName: 1.0.4
+    versionCode: 133
+    commit: 88682469b5c58baec922427fffbbbb95b95b8eb8
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
-    binary: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player-x86_64.apk
     srclibs:
       - flutter@stable
     prebuild:
       - flutterVersion=$(sed -n -E 's/.*flutter-version:[[:space:]]*"?([0-9.]+).*/\1/p'
-        .github/workflows/build-apk.yml)
+        .github/workflows/build-apk.yml | head -n1)
       - '[[ $flutterVersion ]]'
       - git -C $$flutter$$ checkout -f $flutterVersion
       - export PUB_CACHE=$(pwd)/.pub-cache
@@ -90,5 +89,5 @@ VercodeOperation:
   - '%c * 10 + 2'
   - '%c * 10 + 3'
 UpdateCheckData: version.txt|\+(\d+)|.|(.+)\+
-CurrentVersion: 1.0.3
-CurrentVersionCode: 123
+CurrentVersion: 1.0.4
+CurrentVersionCode: 133
