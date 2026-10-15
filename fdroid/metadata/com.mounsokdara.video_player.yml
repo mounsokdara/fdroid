@@ -10,7 +10,8 @@ AutoName: Video Player
 
 RepoType: git
 Repo: https://github.com/mounsokdara/video-player.git
-Binaries: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
+Binaries: 
+  https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
 
 Builds:
   - versionName: 1.0.3
