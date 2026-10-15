@@ -16,7 +16,7 @@ Binaries:
 Builds:
   - versionName: 1.0.3
     versionCode: 121
-    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
+    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
@@ -39,7 +39,7 @@ Builds:
 
   - versionName: 1.0.3
     versionCode: 122
-    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
+    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
     srclibs:
       - flutter@stable
@@ -62,7 +62,7 @@ Builds:
 
   - versionName: 1.0.3
     versionCode: 123
-    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
+    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
     srclibs:
       - flutter@stable
