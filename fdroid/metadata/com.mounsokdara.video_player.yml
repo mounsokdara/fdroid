@@ -10,13 +10,12 @@ AutoName: Video Player
 
 RepoType: git
 Repo: https://github.com/mounsokdara/video-player.git
-Binaries: 
-  https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
+Binaries: https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
 
 Builds:
   - versionName: 1.0.3
     versionCode: 121
-    commit: 01bbb18c2c579e7b9f5ba6e5dd5132a481ec9d99
+    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
@@ -39,7 +38,7 @@ Builds:
 
   - versionName: 1.0.3
     versionCode: 122
-    commit: 01bbb18c2c579e7b9f5ba6e5dd5132a481ec9d99
+    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
     srclibs:
       - flutter@stable
@@ -62,7 +61,7 @@ Builds:
 
   - versionName: 1.0.3
     versionCode: 123
-    commit: 01bbb18c2c579e7b9f5ba6e5dd5132a481ec9d99
+    commit: 66e8e740d9d188d954f04229610ffd3cd336d553
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
     srclibs:
       - flutter@stable
