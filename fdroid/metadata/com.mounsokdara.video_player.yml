@@ -14,9 +14,9 @@ Binaries:
   https://github.com/mounsokdara/video-player/releases/download/v%v/com.mounsokdara.video_player_%c.apk
 
 Builds:
-  - versionName: 1.0.3
-    versionCode: 121
-    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
+  - versionName: 1.0.5
+    versionCode: 141
+    commit: 7084780260dc3d4c818db140a046fe779cda54af
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
@@ -37,9 +37,9 @@ Builds:
         android-arm --dart-define=FDROID=true --dart-define=APP_VERSION=$(cut -d+
         -f1 version.txt)
 
-  - versionName: 1.0.3
-    versionCode: 122
-    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
+  - versionName: 1.0.5
+    versionCode: 142
+    commit: 7084780260dc3d4c818db140a046fe779cda54af
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
     srclibs:
       - flutter@stable
@@ -60,9 +60,9 @@ Builds:
         android-arm64 --dart-define=FDROID=true --dart-define=APP_VERSION=$(cut -d+
         -f1 version.txt)
 
-  - versionName: 1.0.3
-    versionCode: 123
-    commit: c37a745f800bbc58c7e9dbf61c85dcd9b8b09464
+  - versionName: 1.0.5
+    versionCode: 143
+    commit: 7084780260dc3d4c818db140a046fe779cda54af
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
     srclibs:
       - flutter@stable
@@ -92,5 +92,5 @@ VercodeOperation:
   - '%c * 10 + 2'
   - '%c * 10 + 3'
 UpdateCheckData: version.txt|\+(\d+)|.|(.+)\+
-CurrentVersion: 1.0.3
-CurrentVersionCode: 123
+CurrentVersion: 1.0.5
+CurrentVersionCode: 143
