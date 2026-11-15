@@ -47,21 +47,23 @@ jobs:
 
       - name: Download latest APK from video-player
         run: |
-          # Get latest release asset: releases carry one APK per CPU, the F-Droid repo uses the universal one.
+          # Releases carry one APK per CPU, the F-Droid repo uses the universal one.
           # v1.0.5+ names it "-universal.apk", older releases used plain "com.mounsokdara.video_player.apk".
-          API="https://api.github.com/repos/mounsokdara/video-player/releases/latest"
-          curl -sfL "$API" -o release.json
-          DOWNLOAD_URL=$(jq -r '
-            ([.assets[] | select(.name == "com.mounsokdara.video_player-universal.apk")] | first) //
-            ([.assets[] | select(.name == "com.mounsokdara.video_player.apk")] | first) //
-            empty | .browser_download_url' release.json)
-          if [ -z "$DOWNLOAD_URL" ]; then
-            echo "::error::No universal APK found in latest release. Assets:"
-            jq -r '.assets[].name' release.json
+          # Use the /releases/latest/download redirect: no GitHub API call, so no unauthenticated rate limit (403).
+          BASE="https://github.com/mounsokdara/video-player/releases/latest/download"
+          OUT="fdroid/repo/com.mounsokdara.video_player.apk"
+          for NAME in com.mounsokdara.video_player-universal.apk com.mounsokdara.video_player.apk; do
+            echo "Trying: $BASE/$NAME"
+            if curl -fL --retry 3 --retry-delay 5 -o "$OUT" "$BASE/$NAME"; then
+              echo "Downloaded $NAME"
+              FOUND=1
+              break
+            fi
+          done
+          if [ -z "$FOUND" ]; then
+            echo "::error::No universal APK found in latest release of mounsokdara/video-player"
             exit 1
           fi
-          echo "Downloading: $DOWNLOAD_URL"
-          wget -q -O fdroid/repo/com.mounsokdara.video_player.apk "$DOWNLOAD_URL"
           ls -lh fdroid/repo/
 
       - name: Verify APK signer matches AllowedAPKSigningKeys
